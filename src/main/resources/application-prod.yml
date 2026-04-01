@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/pos_system_db}
+    username: ${DB_USER:pos_user}
+    password: ${DB_PASSWORD:change_me_in_env}  # env
+    driver-class-name: org.postgresql.Driver
+
+  security:
+    user:
+      name: ${ADMIN_USER:admin}
+      password: ${ADMIN_PASSWORD:change_me_in_env}
+      roles: ADMIN
+
+# Swagger / OpenAPI
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false

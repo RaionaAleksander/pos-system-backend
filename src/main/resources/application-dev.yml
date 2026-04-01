@@ -1,0 +1,20 @@
+spring:
+  config:
+    import: "optional:classpath:application-secrets.yml"
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pos_system_db
+    username: pos_user
+    driver-class-name: org.postgresql.Driver
+
+  security:
+    user:
+      name: admin
+      roles: ADMIN
+
+# Swagger / OpenAPI
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
