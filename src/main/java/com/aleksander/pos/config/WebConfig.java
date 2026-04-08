@@ -7,12 +7,13 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import io.micrometer.common.lang.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Configuration
+@RequiredArgsConstructor
 public class WebConfig {
 
-    @Value("${cors.allowed-origins}")
-    private String[] allowedOrigins;
+    private final CorsProperties corsProperties;
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
@@ -20,7 +21,7 @@ public class WebConfig {
             @Override
             public void addCorsMappings(@NonNull CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins(allowedOrigins)
+                        .allowedOrigins(corsProperties.getAllowedOrigins().toArray(new String[0]))
                         .allowedMethods("GET", "POST", "PATCH", "PUT", "DELETE")
                         .allowedHeaders("*")
                         .allowCredentials(true);
